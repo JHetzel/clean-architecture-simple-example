@@ -14,7 +14,13 @@ public class UserDataStoreImplementation implements UserDataStore {
         long existingUserCount = mUsers.stream()
                 .filter(user -> user.mEmail.equals(email))
                 .count();
-
-        return (existingUserCount > 0) ? null : new User(email, password);
+        
+        if(existingUserCount > 0) {
+            return null;
+        } else {
+            User newUser = new User(email, password);
+            mUsers.add(newUser);
+            return newUser;
+        }
     }
 }
