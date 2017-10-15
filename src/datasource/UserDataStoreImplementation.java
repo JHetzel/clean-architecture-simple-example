@@ -15,6 +15,6 @@ public class UserDataStoreImplementation implements UserDataStore {
                 .filter(user -> user.mEmail.equals(email))
                 .count();
 
-        return (existingUserCount > 0) ? new User(email, password) : null;
+        return (existingUserCount > 0) ? null : new User(email, password);
     }
 }
